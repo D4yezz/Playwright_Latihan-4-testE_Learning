@@ -1,20 +1,22 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 
-test("Halaman mata pelajaran", async ({ page }) => {
+test("login dan ke Halaman mata pelajaran", async ({ page }) => {
   await page.goto("https://selapan.smkn8malang.sch.id/login/index.php");
 
-  // Expect a title "to contain" a substring.
   await page.fill('input[name="username"]', "5240123663");
   await page.fill('input[name="password"]', "MS5DRZEZ");
   await page.click('button[type="submit"]');
 
-  await page.click("button.tgsdb_btn");
+  await page.getByLabel('Toggle sidebar').click();
+  await page.waitForTimeout(2000);
+  // await expect(page).getByRole('heading', { name: 'Navigation' })
 
-  // Click the get started link.
+  // ke halaman mata pelajaran
   await page
     .getByRole("link", { name: "XI RPL B - PEMROGRAMAN WEB PWEB" })
     .click();
 
-  // await expect(page).toHaveTitle(/Playwright/);
+    await expect(page).toHaveURL("https://selapan.smkn8malang.sch.id/course/view.php?id=284");
+
 });
