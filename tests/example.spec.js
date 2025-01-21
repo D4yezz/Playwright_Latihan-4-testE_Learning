@@ -10,9 +10,7 @@ test("login dan ke Halaman mata pelajaran", async ({ page }) => {
 
   await page.getByLabel('Toggle sidebar').click();
   await page.waitForTimeout(2000);
-  // await expect(page).getByRole('heading', { name: 'Navigation' })
 
-  // ke halaman mata pelajaran
   await page
     .getByRole("link", { name: "XI RPL B - PEMROGRAMAN WEB PWEB" })
     .click();
